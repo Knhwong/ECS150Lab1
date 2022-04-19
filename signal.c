@@ -40,7 +40,7 @@ void sigHandler(int signum){
         "SIGUSR1",      /* 30 */
         "SIGUSR2"
         };
-        printf("Received signal %d (%s)", signum, arr[signum]);
+        printf("Received signal %d (%s)\n", signum, arr[signum]);
 }
 
 int main(int argc, char* argv[]){
@@ -51,7 +51,7 @@ int main(int argc, char* argv[]){
 
     while(1){
         sleep(1);
-        printf("Process is running\n");
+        printf("%d Process is running\n", getpid());
     }
 
     //in another terminal window   kill signal-number pid
