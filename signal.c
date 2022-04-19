@@ -3,10 +3,44 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <stdbool.h>
 
 void sigHandler(int signum){
-        char* arr[] = {NULL, "SIGHUP", "SIGINT"};
-        printf("Received signal %d (%s)", signum, arr[signum]);
+        char* arr[] = {
+        "Signal 0",     /*  signal 0 -- meaningless */
+        "SIGHUP",       /* 1 */
+        "SIGINT",
+        "SIGQUIT",
+        "SIGILL",
+        "SIGTRAP",
+        "SIGABRT",
+        "SIGEMT",
+        "SIGFPE",
+        "SIGKILL",
+        "SIGBUS",       /* 10 */
+        "SIGSEGV",
+        "SIGSYS",
+        "SIGPIPE",
+        "SIGALRM",
+        "SIGTERM",
+        "SIGUSR1",
+        "SIGUSR2",
+        "SIGCHLD",
+        "SIGCONT",
+        "SIGTSTP",      /* 20 */
+        "SIGTTIN",
+        "SIGTTOU",
+        "SIGSTOP",
+        "SIGXCPU",
+        "SIGXFSZ",
+        "SIGVTALRM",
+        "SIGPROF",
+        "SIGWINCH",
+        "SIGPOLL",
+        "SIGUSR1",      /* 30 */
+        "SIGUSR2"
+        };
+        printf("Received signal %d (%s)\n", signum, arr[signum]);
 }
 
 int main(int argc, char* argv[]){
@@ -15,11 +49,11 @@ int main(int argc, char* argv[]){
         signal(i, sigHandler);
     }
 
-    while(true){
-        prinf("Hello World\n");
-        
+    while(1){
+        sleep(1);
+        printf("%d Process is running\n", getpid());
     }
 
-    //in another terminal window    KILL -SIGKILL pid
+    //in another terminal window   kill signal-number pid
 
 }
