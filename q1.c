@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+// Used Figure 5.3 from the book as a reference
+
 void sigHandler(int signum){
     printf("exit\n");
     exit(0);
@@ -16,7 +18,7 @@ int main(int argc, char* argv[], char* envp[]){
     // less than 3 arg 
     if (argc < 3){
         printf("Need 3 arguments\n");
-        return 0;
+        exit(1);
     } 
 
     // s is not a number
@@ -30,7 +32,7 @@ int main(int argc, char* argv[], char* envp[]){
     
     if(!sIsDigit){
         printf("Number of seconds should be an integer\n");
-        return 0;
+        exit(1);
     }
 
     int s = atoi(argv[1]);
@@ -38,7 +40,7 @@ int main(int argc, char* argv[], char* envp[]){
     // s is negative
     if (s < 0){
         printf("Negative number of seconds\n");
-        return 0;
+        exit(1);
     }
 
     int forkVal = fork();
@@ -48,11 +50,8 @@ int main(int argc, char* argv[], char* envp[]){
         exit(1);
     }
     else if (forkVal == 0){ //child process
-        //newarg[0] =argv[2];
-        printf("child\n");
-        execve(argv[1],argv+2,envp);
+        execve(argv[2], argv+2, envp);
         perror("execve");
-        printf("child\n");
     }
     else { //parent process
         //kill process after s seconds
