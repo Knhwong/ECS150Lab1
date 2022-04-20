@@ -44,6 +44,7 @@ int main(int argc, char * argv[]) {
             //Can't compare strings due to hard link vs symlink
             struct stat buff;
             lstat(buffer, &buff);
+            //If symlink, st_ino will be different from lstat. 
             if (file1.st_ino == buff.st_ino) {
                printf("%s is a symlink to %s \n", argv[1],argv[2]);
             } else {
