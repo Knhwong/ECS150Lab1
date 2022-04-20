@@ -4,6 +4,10 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <stdbool.h>
+#include <time.h>
+#include <string.h>
+
+//With reference from https://www.techiedelight.com/print-current-date-and-time-in-c/ for printing out the date and time
 
 void sigHandler(int signum){
         char* arr[] = {
@@ -40,6 +44,13 @@ void sigHandler(int signum){
         "SIGUSR1",      /* 30 */
         "SIGUSR2"
         };
+
+        time_t curTime;
+        time(&curTime);
+        char* outputTime = ctime(&curTime);
+        outputTime[strlen(outputTime)-1] = '\0';
+
+        printf("%s ", outputTime);
         printf("Received signal %d (%s)\n", signum, arr[signum]);
 }
 
