@@ -17,7 +17,7 @@ void sigHandler(int signum){
 int main(int argc, char* argv[], char* envp[]){
     // less than 3 arg 
     if (argc < 3){
-        printf("Need 3 arguments\n");
+        printf("Error: Incorrect number of arguments\n");
         exit(1);
     } 
 
@@ -31,7 +31,7 @@ int main(int argc, char* argv[], char* envp[]){
     }
     
     if(!sIsDigit){
-        printf("Number of seconds should be an integer\n");
+        printf("Error: Invalid type for seconds\n");
         exit(1);
     }
 
@@ -39,7 +39,7 @@ int main(int argc, char* argv[], char* envp[]){
 
     // s is negative
     if (s < 0){
-        printf("Negative number of seconds\n");
+        printf("Error: Seconds cannot be negative\n");
         exit(1);
     }
 
