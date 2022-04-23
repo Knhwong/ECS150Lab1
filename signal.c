@@ -60,9 +60,14 @@ int main(int argc, char* argv[]){
         signal(i, sigHandler);
     }
 
+    int time = 0;
+
     while(1){
+        if (time == 49)
+            exit(0);
         sleep(1);
-        printf("%d Process is running\n", getpid());
+        time += 1;
+        //printf("%d Process is running\n", getpid());
     }
 
     //in another terminal window   kill signal-number pid
