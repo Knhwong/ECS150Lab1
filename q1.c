@@ -10,7 +10,6 @@
 // Used Figure 5.3 from the book as a reference
 
 void sigHandler(int signum){
-    printf("exit\n");
     exit(0);
 }
 
